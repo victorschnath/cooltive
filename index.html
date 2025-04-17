@@ -9,27 +9,14 @@
 </head>
 <body>
    <!-- Header -->
-<header class="header">
-    <div class="container header-container">
-        <div class="logo">
-            <img src="./Imagens/logo.png" alt="Cooltive Saúde" width="140" height="40">
-        </div>
-        <div class="header-buttons">
-            <a href="#planos" class="btn btn-outline">Ver planos</a>
-            <button id="loginBtn" class="btn btn-primary">Login</button>
-        </div>
-    </div>
-</header>
-
-<!-- Modal de Login -->
-<div id="loginModal" class="modal">
-    <div class="modal-content">
+   <div id="loginModal" class="modal">
+    <div class="modal-content login-modal">
         <span class="close-modal">&times;</span>
-        <h2>Acesse sua conta</h2>
+        <h2>Acesso ao Sistema</h2>
         <form id="loginForm">
             <div class="form-group">
-                <label for="cpf">CPF</label>
-                <input type="text" id="cpf" name="cpf" placeholder="Digite seu CPF" required>
+                <label for="username">Login</label>
+                <input type="text" id="username" name="username" placeholder="Digite seu CPF ou login" required>
             </div>
             <div class="form-group">
                 <label for="password">Senha</label>
@@ -38,14 +25,51 @@
             <div class="form-actions">
                 <button type="submit" class="btn btn-primary btn-full">Entrar</button>
             </div>
-            <div class="form-links">
-                <a href="#" class="form-link">Esqueci minha senha</a>
+            <div class="login-error" id="loginError"></div>
+        </form>
+    </div>
+</div>
+
+<!-- Header -->
+<header class="header">
+    <div class="container header-container">
+        <div class="logo">
+            <img src="./Imagens/logo.png" alt="Cooltive Saúde" width="140" height="40">
+        </div>
+        <div class="header-actions">
+            <button id="loginBtn" class="btn btn-outline">Login</button>
+        </div>
+    </div>
+</header>
+
+<!-- Modal de Login -->
+<div id="loginModal" class="modal">
+    <div class="modal-content login-modal">
+        <span class="close-modal">&times;</span>
+        <h2>Acesso ao Sistema</h2>
+        <div id="loginError" class="error-message" style="display: none;">
+            Login ou senha incorretos. Por favor, tente novamente.
+        </div>
+        <form id="loginForm">
+            <div class="form-group">
+                <label for="username">Login</label>
+                <input type="text" id="username" name="username" placeholder="Digite seu login" required>
+            </div>
+            <div class="form-group">
+                <label for="password">Senha</label>
+                <input type="password" id="password" name="password" placeholder="Digite sua senha" required>
+            </div>
+            <div class="form-actions">
+                <button type="submit" class="btn btn-primary btn-full">Entrar</button>
+            </div>
+            <div class="login-footer">
+                <a href="#" class="forgot-password">Esqueceu sua senha?</a>
             </div>
         </form>
     </div>
 </div>
 
-    <!-- Hero Section -->
+<!-- Hero Section -->
     <section class="hero-section">
         <div class="hero-background"></div>
         <div class="hero-blob-1"></div>
@@ -390,15 +414,13 @@
                     <ul>
                         <li><a href="#">Início</a></li>
                         <li><a href="#planos">Planos</a></li>
-                        <li><a href="#">Sobre nós</a></li>
-                        <li><a href="#contato">Contato</a></li>
                     </ul>
                 </div>
                 <div class="footer-contact">
                     <h3>Contato</h3>
                     <ul>
-                        <li>contato@cooltivesaude.com.br</li>
-                        <li>0800 123 4567</li>
+                        <li>cooltivesaude@gmail.com</li>
+                        <li>(51)2399-1015</li>
                     </ul>
                 </div>
                 <div class="footer-social">
@@ -424,49 +446,85 @@
             </div>
         </div>
     </footer>
-    <!-- JavaScript para o modal de login -->
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        // Elementos do DOM
-        const loginBtn = document.getElementById('loginBtn');
-        const loginModal = document.getElementById('loginModal');
-        const closeModal = document.querySelector('.close-modal');
-        const loginForm = document.getElementById('loginForm');
-        
-        // Abrir o modal quando o botão de login for clicado
-        loginBtn.addEventListener('click', function() {
-            loginModal.style.display = 'block';
-        });
-        
-        // Fechar o modal quando o X for clicado
-        closeModal.addEventListener('click', function() {
-            loginModal.style.display = 'none';
-        });
-        
-        // Fechar o modal quando clicar fora dele
-        window.addEventListener('click', function(event) {
-            if (event.target === loginModal) {
-                loginModal.style.display = 'none';
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Elementos
+            const loginBtn = document.getElementById('loginBtn');
+            const loginModal = document.getElementById('loginModal');
+            const closeModal = document.querySelector('.close-modal');
+            const loginForm = document.getElementById('loginForm');
+            const loginError = document.getElementById('loginError');
+            
+            // Verificar se o usuário já está logado
+            if (localStorage.getItem('loggedIn')) {
+                const userType = localStorage.getItem('userType');
+                if (userType === 'admin') {
+                    window.location.href = 'areadoadm.html';
+                } else {
+                    window.location.href = 'areadocliente.html';
+                }
+            }
+            
+            // Abrir modal de login
+            if (loginBtn) {
+                loginBtn.addEventListener('click', function() {
+                    loginModal.style.display = 'block';
+                });
+            }
+            
+            // Fechar modal
+            if (closeModal) {
+                closeModal.addEventListener('click', function() {
+                    loginModal.style.display = 'none';
+                    loginError.textContent = '';
+                });
+            }
+            
+            // Fechar modal ao clicar fora
+            window.addEventListener('click', function(event) {
+                if (event.target === loginModal) {
+                    loginModal.style.display = 'none';
+                    loginError.textContent = '';
+                }
+            });
+            
+            // Processar login
+            if (loginForm) {
+                loginForm.addEventListener('submit', function(event) {
+                    event.preventDefault();
+                    
+                    const username = document.getElementById('username').value;
+                    const password = document.getElementById('password').value;
+                    
+                    // Verificar credenciais de administrador
+                    if (username === 'cooltivesaudeadm' && password === '200788prancha') {
+                        localStorage.setItem('loggedIn', 'true');
+                        localStorage.setItem('userType', 'admin');
+                        window.location.href = 'areadoadm.html';
+                        return;
+                    }
+                    
+                    // Verificar credenciais de cliente
+                    const storedClients = localStorage.getItem('clients');
+                    if (storedClients) {
+                        const clients = JSON.parse(storedClients);
+                        const client = clients.find(c => c.login === username && c.password === password);
+                        
+                        if (client) {
+                            localStorage.setItem('loggedIn', 'true');
+                            localStorage.setItem('userType', 'client');
+                            localStorage.setItem('currentClient', client.id);
+                            window.location.href = 'areadocliente.html';
+                            return;
+                        }
+                    }
+                    
+                    // Credenciais inválidas
+                    loginError.textContent = 'Login ou senha inválidos. Tente novamente.';
+                });
             }
         });
-        
-        // Processar o formulário de login
-        loginForm.addEventListener('submit', function(event) {
-            event.preventDefault();
-            
-            const cpf = document.getElementById('cpf').value;
-            const password = document.getElementById('password').value;
-            
-            // Simulação de validação (em um caso real, isso seria feito no servidor)
-            // Para fins de demonstração, qualquer CPF e senha serão aceitos
-            if (cpf && password) {
-                // Redirecionar para a área do cliente
-                window.location.href = 'areadocliente.html';
-            } else {
-                alert('Por favor, preencha todos os campos.');
-            }
-        });
-    });
-</script>
+    </script>
 </body>
 </html>

@@ -16,9 +16,10 @@
             </div>
             <div class="user-profile">
                 <div class="user-info">
-                    <span class="user-name">Olá, Maria</span>
-                    <span class="user-plan">Plano Família</span>
+                    <span class="user-name" id="clientName">Olá, Cliente</span>
+                    <span class="user-plan" id="clientPlan">Plano Individual</span>
                 </div>
+                <a href="index.html" class="btn btn-logout" id="logoutBtn">Sair</a>
             </div>
         </div>
     </header>
@@ -27,76 +28,139 @@
     <main class="main-content">
         <div class="container">
             <section class="welcome-section">
-                <h1>Bem-vinda à sua área do cliente</h1>
-                <p>Acesse todos os serviços e conteúdos exclusivos da Cooltive Saúde</p>
+                <h1>Área do Cliente</h1>
+                <p>Gerencie seu plano e acesse os serviços disponíveis</p>
             </section>
 
-            <section class="services-section">
-                <h2>Serviços principais</h2>
-                <div class="main-services">
-                    <a href="#" class="service-card primary">
-                        <div class="service-icon">👨‍⚕️</div>
-                        <div class="service-content">
-                            <h3>Consultar Agora</h3>
-                            <p>Conecte-se com um clínico geral para uma consulta imediata</p>
+            <!-- Dashboard Section -->
+            <section class="dashboard-section">
+                <div class="section-header">
+                    <h2>Meu Plano</h2>
+                </div>
+                <div class="dashboard-cards">
+                    <div class="dashboard-card">
+                        <div class="card-header">
+                            <h3 id="planTitle">Plano Individual</h3>
                         </div>
-                    </a>
-                    <a href="#" class="service-card">
-                        <div class="service-icon">💊</div>
-                        <div class="service-content">
-                            <h3>Medicamentos</h3>
-                            <p>Acesse nossa farmácia online com descontos exclusivos</p>
+                        <div class="card-content">
+                            <div class="plan-details">
+                                <div class="detail-item">
+                                    <span class="detail-label">Status:</span>
+                                    <span class="detail-value" id="planStatus">Ativo</span>
+                                </div>
+                                <div class="detail-item">
+                                    <span class="detail-label">Valor Mensal:</span>
+                                    <span class="detail-value" id="planValue">R$ 89,99</span>
+                                </div>
+                                <div class="detail-item">
+                                    <span class="detail-label">Próxima Cobrança:</span>
+                                    <span class="detail-value" id="nextBilling">15/05/2025</span>
+                                </div>
+                            </div>
                         </div>
-                    </a>
-                    <a href="#" class="service-card emergency">
-                        <div class="service-icon">🚨</div>
-                        <div class="service-content">
-                            <h3>SOS</h3>
-                            <p>Acesso rápido para suporte imediato em emergências</p>
-                        </div>
-                    </a>
+                    </div>
                 </div>
             </section>
 
+            <!-- Services Section -->
+            <section class="services-section">
+                <div class="section-header">
+                    <h2>Serviços Disponíveis</h2>
+                </div>
+                <div class="services-grid">
+                    <div class="service-card">
+                        <div class="service-icon">🩺</div>
+                        <h3>Consulta Médica</h3>
+                        <p>Consulte agora com um Clínico Geral.</p>
+                        <button class="btn btn-primary">Consulte Agora</button>
+                    </div>
+                    <div class="service-card">
+                        <div class="service-icon">💊</div>
+                        <h3>Medicamentos</h3>
+                        <p>Compre seus remédios agora mesmo.</p>
+                        <button class="btn btn-primary">Acesse Agora</button>
+                    </div>
+                    <div class="service-card">
+                        <div class="service-icon">🧠</div>
+                        <h3>Psicologia</h3>
+                        <p>Agende uma consulta com psicólogo.</p>
+                        <button class="btn btn-primary">Agendar</button>
+                    </div>
+                    <div class="service-card">
+                        <div class="service-icon">🆘</div>
+                        <h3>SOS</h3>
+                        <p>Link para situações de emergência.</p>
+                        <button class="btn btn-primary">Acessar Agora</button>
+                    </div>
+                    <div class="service-card">
+                        <div class="service-icon">🧑‍⚕️</div>
+                        <h3>Agendar Especialidade</h3>
+                        <p>Agende alguma das nossas 14 especilidades médicas.</p>
+                        <button class="btn btn-primary">Agende agora</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Exclusive Content Section -->
             <section class="content-section">
-                <h2>Conteúdos educativos</h2>
-                <div class="content-categories">
-                    <a href="#" class="category-card">
-                        <div class="category-icon">♂️</div>
+                <div class="section-header">
+                    <h2>Conteúdos Exclusivos</h2>
+                </div>
+                <div class="content-grid">
+                    <div class="content-card">
+                        <div class="content-icon">👨</div>
                         <h3>Área do Homem</h3>
-                    </a>
-                    <a href="#" class="category-card">
-                        <div class="category-icon">♀️</div>
+                        <p>Conteúdos sobre saúde masculina</p>
+                        <button class="btn btn-secondary">Acessar</button>
+                    </div>
+                    <div class="content-card">
+                        <div class="content-icon">👩</div>
                         <h3>Área da Mulher</h3>
-                    </a>
-                    <a href="#" class="category-card">
-                        <div class="category-icon">🧓</div>
+                        <p>Conteúdos sobre saúde feminina</p>
+                        <button class="btn btn-secondary">Acessar</button>
+                    </div>
+                    <div class="content-card">
+                        <div class="content-icon">👴</div>
                         <h3>Área do Idoso</h3>
-                    </a>
-                    <a href="#" class="category-card">
-                        <div class="category-icon">🥗</div>
+                        <p>Conteúdos sobre saúde na terceira idade</p>
+                        <button class="btn btn-secondary">Acessar</button>
+                    </div>
+                    <div class="content-card">
+                        <div class="content-icon">🥗</div>
                         <h3>Alimentação Saudável</h3>
-                    </a>
-                    <a href="#" class="category-card">
-                        <div class="category-icon">💪</div>
+                        <p>Dicas e receitas para uma alimentação equilibrada</p>
+                        <button class="btn btn-secondary">Acessar</button>
+                    </div>
+                    <div class="content-card">
+                        <div class="content-icon">🦴</div>
                         <h3>Dor nas Costas Zero</h3>
-                    </a>
-                    <a href="#" class="category-card">
-                        <div class="category-icon">🧘</div>
-                        <h3>Espiritualidade</h3>
-                    </a>
-                    <a href="#" class="category-card">
-                        <div class="category-icon">💸</div>
+                        <p>Exercícios e orientações para aliviar dores</p>
+                        <button class="btn btn-secondary">Acessar</button>
+                    </div>
+                    <div class="content-card">
+                        <div class="content-icon">💰</div>
                         <h3>Escola do Dinheiro</h3>
-                    </a>
-                    <a href="#" class="category-card">
-                        <div class="category-icon">🏋️</div>
-                        <h3>Academia em Casa</h3>
-                    </a>
-                    <a href="#" class="category-card">
-                        <div class="category-icon">❤️</div>
+                        <p>Educação financeira para sua saúde econômica</p>
+                        <button class="btn btn-secondary">Acessar</button>
+                    </div>
+                    <div class="content-card">
+                        <div class="content-icon">🏥</div>
                         <h3>Saúde em Geral</h3>
-                    </a>
+                        <p>Informações e dicas sobre saúde e bem-estar</p>
+                        <button class="btn btn-secondary">Acessar</button>
+                    </div>
+                    <div class="content-card">
+                        <div class="content-icon">🏋️</div>
+                        <h3>Exercícios em Casa</h3>
+                        <p>Rotinas de exercícios para fazer em casa</p>
+                        <button class="btn btn-secondary">Acessar</button>
+                    </div>
+                    <div class="content-card">
+                        <div class="content-icon">✨</div>
+                        <h3>Espiritualidade</h3>
+                        <p>Conteúdos sobre bem-estar espiritual</p>
+                        <button class="btn btn-secondary">Acessar</button>
+                    </div>
                 </div>
             </section>
         </div>
@@ -115,5 +179,108 @@
             </div>
         </div>
     </footer>
+
+    <!-- JavaScript -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Verificar se o usuário está logado
+            if (!localStorage.getItem('loggedIn')) {
+                window.location.href = 'index.html';
+                return;
+            }
+            
+            // Verificar se é um cliente
+            if (localStorage.getItem('userType') !== 'client') {
+                window.location.href = 'index.html';
+                return;
+            }
+            
+            // Elementos
+            const elements = {
+                clientName: document.getElementById('clientName'),
+                clientPlan: document.getElementById('clientPlan'),
+                planTitle: document.getElementById('planTitle'),
+                planStatus: document.getElementById('planStatus'),
+                planValue: document.getElementById('planValue'),
+                nextBilling: document.getElementById('nextBilling'),
+                logoutBtn: document.getElementById('logoutBtn')
+            };
+            
+            // Carregar dados do cliente
+            const clientId = localStorage.getItem('currentClient');
+            if (clientId) {
+                const storedClients = localStorage.getItem('clients');
+                if (storedClients) {
+                    const clients = JSON.parse(storedClients);
+                    const client = clients.find(c => c.id === clientId);
+                    
+                    if (client) {
+                        // Atualizar informações do cliente
+                        elements.clientName.textContent = `Olá, ${client.name.split(' ')[0]}`;
+                        
+                        // Definir plano
+                        let planText = '';
+                        let planValue = '';
+                        
+                        switch (client.planType) {
+                            case 'individual':
+                                planText = 'Plano Individual';
+                                planValue = 'R$ 89,99';
+                                break;
+                            case 'family':
+                                planText = 'Plano Família';
+                                planValue = 'R$ 149,99';
+                                break;
+                            case 'individual-psychology':
+                                planText = 'Plano Individual + Psicologia';
+                                planValue = 'R$ 139,98';
+                                break;
+                            case 'family-psychology':
+                                planText = 'Plano Família + Psicologia';
+                                planValue = 'R$ 199,98';
+                                break;
+                        }
+                        
+                        elements.clientPlan.textContent = planText;
+                        elements.planTitle.textContent = planText;
+                        elements.planValue.textContent = planValue;
+                        
+                        // Definir status
+                        let statusText = '';
+                        switch (client.status) {
+                            case 'active':
+                                statusText = 'Ativo';
+                                break;
+                            case 'inactive':
+                                statusText = 'Inativo';
+                                break;
+                            case 'pending':
+                                statusText = 'Pendente';
+                                break;
+                        }
+                        elements.planStatus.textContent = statusText;
+                        
+                        // Calcular próxima cobrança (30 dias a partir de hoje)
+                        const nextBilling = new Date();
+                        nextBilling.setDate(nextBilling.getDate() + 30);
+                        const day = nextBilling.getDate().toString().padStart(2, '0');
+                        const month = (nextBilling.getMonth() + 1).toString().padStart(2, '0');
+                        const year = nextBilling.getFullYear();
+                        elements.nextBilling.textContent = `${day}/${month}/${year}`;
+                    }
+                }
+            }
+            
+            // Event Listener para logout
+            if (elements.logoutBtn) {
+                elements.logoutBtn.addEventListener('click', function() {
+                    localStorage.removeItem('loggedIn');
+                    localStorage.removeItem('userType');
+                    localStorage.removeItem('currentClient');
+                    window.location.href = 'index.html';
+                });
+            }
+        });
+    </script>
 </body>
 </html>
