@@ -200,6 +200,7 @@
                             <option value="family">Família (R$ 149,99/mês)</option>
                             <option value="individual-psychology">Individual + Psicologia (R$ 139,98/mês)</option>
                             <option value="family-psychology">Família + Psicologia (R$ 199,98/mês)</option>
+                            <option value="empresarial">Empresarial</option>
                         </select>
                     </div>
                     <div class="form-group">
@@ -218,7 +219,6 @@
                         <select id="status" name="status" required>
                             <option value="active">Ativo</option>
                             <option value="inactive">Inativo</option>
-                            <option value="pending">Pendente</option>
                         </select>
                     </div>
                 </div>
@@ -335,6 +335,7 @@
                             <option value="family">Família (R$ 149,99/mês)</option>
                             <option value="individual-psychology">Individual + Psicologia (R$ 139,98/mês)</option>
                             <option value="family-psychology">Família + Psicologia (R$ 199,98/mês)</option>
+                            <option value="empresarial">Empresarial</option>
                         </select>
                     </div>
                     <div class="form-group">
@@ -353,7 +354,6 @@
                         <select id="editStatus" name="editStatus" required>
                             <option value="active">Ativo</option>
                             <option value="inactive">Inativo</option>
-                            <option value="pending">Pendente</option>
                         </select>
                     </div>
                 </div>
@@ -606,6 +606,7 @@
                     case 'family': return 'Família';
                     case 'individual-psychology': return 'Individual + Psicologia';
                     case 'family-psychology': return 'Família + Psicologia';
+                    case 'empresarial': return 'Empresarial';
                     default: return 'Desconhecido';
                 }
             }
@@ -615,7 +616,6 @@
                 switch (status) {
                     case 'active': return 'Ativo';
                     case 'inactive': return 'Inativo';
-                    case 'pending': return 'Pendente';
                     default: return 'Desconhecido';
                 }
             }
